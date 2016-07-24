@@ -14,6 +14,9 @@
 		468E85B91D446F230049E825 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 468E85B71D446F230049E825 /* LaunchScreen.storyboard */; };
 		468E85C41D446F230049E825 /* pokevisionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468E85C31D446F230049E825 /* pokevisionTests.swift */; };
 		468E85CF1D446F230049E825 /* pokevisionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468E85CE1D446F230049E825 /* pokevisionUITests.swift */; };
+		468E85DD1D44701A0049E825 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 468E85DC1D44701A0049E825 /* MapKit.framework */; };
+		468E85DF1D4474D50049E825 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468E85DE1D4474D50049E825 /* LocationManager.swift */; };
+		468E85E11D44A3850049E825 /* annview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468E85E01D44A3850049E825 /* annview.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +50,9 @@
 		468E85CA1D446F230049E825 /* pokevisionUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pokevisionUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		468E85CE1D446F230049E825 /* pokevisionUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pokevisionUITests.swift; sourceTree = "<group>"; };
 		468E85D01D446F230049E825 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		468E85DC1D44701A0049E825 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		468E85DE1D4474D50049E825 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		468E85E01D44A3850049E825 /* annview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = annview.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				468E85DD1D44701A0049E825 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +84,7 @@
 		468E85A21D446F230049E825 = {
 			isa = PBXGroup;
 			children = (
+				468E85DC1D44701A0049E825 /* MapKit.framework */,
 				468E85AD1D446F230049E825 /* pokevision */,
 				468E85C21D446F230049E825 /* pokevisionTests */,
 				468E85CD1D446F230049E825 /* pokevisionUITests */,
@@ -97,12 +105,14 @@
 		468E85AD1D446F230049E825 /* pokevision */ = {
 			isa = PBXGroup;
 			children = (
+				468E85DE1D4474D50049E825 /* LocationManager.swift */,
 				468E85AE1D446F230049E825 /* AppDelegate.swift */,
 				468E85B01D446F230049E825 /* ViewController.swift */,
 				468E85B21D446F230049E825 /* Main.storyboard */,
 				468E85B51D446F230049E825 /* Assets.xcassets */,
 				468E85B71D446F230049E825 /* LaunchScreen.storyboard */,
 				468E85BA1D446F230049E825 /* Info.plist */,
+				468E85E01D44A3850049E825 /* annview.swift */,
 			);
 			path = pokevision;
 			sourceTree = "<group>";
@@ -193,6 +203,7 @@
 				TargetAttributes = {
 					468E85AA1D446F230049E825 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = PESUD694VF;
 					};
 					468E85BE1D446F230049E825 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -256,8 +267,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				468E85E11D44A3850049E825 /* annview.swift in Sources */,
 				468E85B11D446F230049E825 /* ViewController.swift in Sources */,
 				468E85AF1D446F230049E825 /* AppDelegate.swift in Sources */,
+				468E85DF1D4474D50049E825 /* LocationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,10 +414,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = pokevision/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = sdf.pokevision;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -412,10 +428,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = pokevision/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = sdf.pokevision;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

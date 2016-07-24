@@ -1,0 +1,5 @@
+#!/bin/bash
+for i in {1..200}
+do
+wget "https://ugc.pokevision.com/images/pokemon/$i.png"
+done
