@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import Foundation
 class ViewController: UIViewController,CLLocationManagerDelegate {
     var coreLocationManager = CLLocationManager()
     var locationManager:LocationManager!
@@ -27,16 +28,17 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
             self.displayLocation(CLLocation(latitude:latitude,longitude:longitude))
         }
     }
+    var locAnn:MKPointAnnotation = MKPointAnnotation()
     func displayLocation(location:CLLocation){
         lati = location.coordinate.latitude
         longi = location.coordinate.longitude
         mapView.setRegion(MKCoordinateRegion(center:CLLocationCoordinate2DMake(location.coordinate.latitude,location.coordinate.longitude),span:MKCoordinateSpanMake(0.05,0.05)),animated:true)
         let locationPinCoord = CLLocationCoordinate2D(latitude:location.coordinate.latitude,longitude: location.coordinate.longitude)
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = locationPinCoord
-        annotation.title = "0"
-        mapView.addAnnotation(annotation)
-        mapView.showAnnotations([annotation],animated:true)
+        self.mapView.removeAnnotations([locAnn])
+        locAnn.coordinate = locationPinCoord
+        locAnn.title = "0"
+        mapView.addAnnotation(locAnn)
+        mapView.showAnnotations([locAnn],animated:true)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -52,12 +54,17 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
     var pokeAnn : [MKAnnotation] = []
     @IBAction func scan(sender: UIButton) {
         let url = NSURL(string: "https://pokevision.com/map/data/"+String(lati)+"/"+String(longi))
-        
-        let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
+        let request = NSURLRequest(URL: url!)
+
+        //request.setValue("gzip, deflate, sdch, br",forKey:"accept-encoding")
+        //request.setValue("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36",forKey:"user-agent")
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {(data, response, error)->Void in
             self.res = data!
         }
         task.resume()
+        
         do{
+            
             let json = try NSJSONSerialization.JSONObjectWithData(self.res, options: .AllowFragments)
             self.mapView.removeAnnotations(self.pokeAnn)
             if (String(json["status"]).rangeOfString("success") != nil){
